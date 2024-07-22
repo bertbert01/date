@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Centered Text with Smooth Moving Button</title>
+    <style>
+        body {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            font-family: 'Helvetica Neue', Arial, sans-serif;
+            background: linear-gradient(135deg, #a2d2ff 0%, #3a86ff 100%);
+            animation: backgroundAnimation 10s ease infinite;
+        }
+
+        @keyframes backgroundAnimation {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        .centered-text {
+            font-size: 32px;
+            font-weight: bold;
+            color: #fff;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+            margin-bottom: 30px;
+            animation: textFadeIn 0.8s ease-in-out;
+        }
+
+        @keyframes textFadeIn {
+            0% { opacity: 0; transform: scale(0.8); }
+            100% { opacity: 1; transform: scale(1); }
+        }
+
+        .button-container {
+            display: flex;
+            gap: 20px;
+        }
+
+        button {
+            font-size: 18px;
+            padding: 12px 25px;
+            border: none;
+            border-radius: 30px;
+            cursor: pointer;
+            color: white;
+            background-color: #007bff;
+            transition: background-color 0.1s ease, transform 0.3s ease;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        button:hover {
+            background-color: #0056b3;
+        }
+
+        .no-button {
+            background-color: #dc3545;
+        }
+
+        .no-button:hover {
+            background-color: #c82333;
+        }
+
+        a {
+            text-decoration: none;
+        }
+    </style>
+</head>
+<body>
+    <div class="centered-text">hi, date tayo?</div>
+    <div class="button-container">
+      <a href="date_res.html">
+        <button type="button" id="yesButton">yes</button>
+      </a>
+        <button type="button" class="no-button" id="noButton">no</button>
+    </div>
+
+    <script>
+        const noButton = document.getElementById('noButton');
+
+        noButton.addEventListener('click', function() {
+            const currentX = noButton.offsetLeft;
+            const currentY = noButton.offsetTop;
+            const moveDistance = 200; // Adjust the move distance as needed
+
+            const randomX = currentX + (Math.random() * moveDistance * 2 - moveDistance);
+            const randomY = currentY + (Math.random() * moveDistance * 2 - moveDistance);
+
+            noButton.style.transform = `translate(${randomX - currentX}px, ${randomY - currentY}px)`;
+        });
+    </script>
+</body>
+</html>
